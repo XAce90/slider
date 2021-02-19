@@ -1,4 +1,4 @@
-{
+const db = {
   "cards": [
     {
       "id": 1,
@@ -65,3 +65,5 @@
     }
   ]
 }
+
+export default db;

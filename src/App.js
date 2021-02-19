@@ -1,18 +1,18 @@
-import Card from './components/Card';
+import db from './data/db';
+import Slider from './components/Slider';
 
 function App() {
-
+  const { cards } = db;
   return (
     <div className="App">
       <h1>Casper's Friendly Slider</h1>
-      <Card 
-        title="We are Humans"
-        subtitle="What will you find here"
-        text="We act like humans, we talk like humans, and we think like humans. And we call out anyone who does the opposite."
-        image="https://picsum.photos/300/150/"
+      <Slider
+        slides={cards}
+        maxSlides={6}
       />
     </div>
   );
 }
+/* todo: background color */
 
 export default App;
