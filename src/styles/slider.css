@@ -1,4 +1,31 @@
 .slider {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.slider__content {
   display: flex;
   column-gap: 26px;
+  padding: 0 26px;
+}
+
+.slider__arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 23px;
+  font-size: 40px; /* scales up the SVG icons */
+}
+
+.slider__left-arrow,
+.slider__right-arrow {
+  cursor: pointer;
+  color: #2DA936
+}
+
+.slider__right-arrow:hover,
+.slider__right-arrow:focus,
+.slider__left-arrow:hover,
+.slider__left-arrow:focus {
+  opacity: .7;
 }

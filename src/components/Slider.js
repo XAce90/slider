@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import Card from './Card';
+import SliderContent from './SliderContent';
 import '../styles/slider.css';
+import Arrows from './Arrows';
 
 export default function Slider(props) {
   // If maxSlides has been passed in as a prop, render only a subset of the slides
@@ -8,18 +9,10 @@ export default function Slider(props) {
 
   return (
     <div className="slider">
-      {slides.map(slide => (
-        <Card
-          key={slide.id}
-          title={slide.title}
-          subtitle={slide.subtitle}
-          text={slide.text}
-          // the image URL in the supplied data was not working for testing,
-          // so I replaced it with a placeholder link that does
-          image="https://picsum.photos/300/150/"
-        />
-      ))}
-      {/* todo arrows */}
+      <SliderContent slides={slides} />
+      {props.showArrows && (
+        <Arrows />
+      )}
     </div>
   )
 }
