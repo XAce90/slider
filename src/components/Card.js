@@ -3,7 +3,7 @@ import '../styles/card.css';
 
 export default function Card(props) {
   return (
-    <div className="card">
+    <div className="card" style={{ minWidth: `${props.width}px` }}>
       <img className="card__image" src={props.image} alt={props.altText || ''} />
       <div className="card__content">
         <div className="card__header">
@@ -14,6 +14,7 @@ export default function Card(props) {
         
         <p className="card__excerpt">{props.text}</p>
         <a href="/" className="card__link">Learn More</a>
+        {/* todo: align to bottom of card? */}
       </div>
     </div>
   )
@@ -26,4 +27,5 @@ Card.propTypes = {
   link: PropTypes.string,
   image: PropTypes.string,
   altText: PropTypes.string,
+  width: PropTypes.number,
 }

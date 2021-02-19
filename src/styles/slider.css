@@ -5,8 +5,7 @@
 
 .slider__content {
   display: flex;
-  column-gap: 26px;
-  padding: 0 26px;
+  transition: 1s; /* todo: fine tune */
 }
 
 .slider__arrows {

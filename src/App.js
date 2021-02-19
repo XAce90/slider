@@ -8,7 +8,7 @@ function App() {
       <h1>Casper's Friendly Slider</h1>
       <Slider
         slides={cards}
-        maxSlides={6}
+        slidesShown={3}
       />
     </div>
   );
