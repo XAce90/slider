@@ -42,9 +42,25 @@ export default function Slider(props) {
   }
 
   useEffect(() => {
-    setSlideWidth(getSlideSize());
+    const setSizes = () => {
+      setSlideWidth(getSlideSize());
+    }
+    setSizes();
+    window.addEventListener('resize', setSizes)
+    
+    // cleanup! remove listener
+    return () => {
+      window.removeEventListener('resize', setSizes);
+    }
   }, []);
-  /* todo: resize on window resize */
+  /**
+   * todo: change number of slides shown based on width of viewport
+   * for example, the slideWidths should never drop below a certain width
+   * (or above a certain width)
+   * if they do, snap to fewer (or greater slides)
+   * 
+   * todo: make this configurable
+   */
 
   return (
     <div className="slider">

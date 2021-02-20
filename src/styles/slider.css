@@ -1,11 +1,12 @@
 .slider {
   position: relative;
   overflow-x: hidden;
+  /* todo: because of the overflow, the top border is cut off */
 }
 
 .slider__content {
   display: flex;
-  transition: 1s; /* todo: fine tune */
+  transition: 1s;
 }
 
 .slider__arrows {
