@@ -28,8 +28,8 @@ export default function Slider(props) {
 
   const nextSlide = () => {
     if(activeIndex === slides.length - 1) return false // do nothing if there are no more slides
-
-    // setActiveIndex(activeIndex + props.slidesShown);
+    // todo: do not scroll past last card
+    
     setActiveIndex(activeIndex + 1);    
     setOffset(offset + slideWidth + props.gutterSize);
   }
