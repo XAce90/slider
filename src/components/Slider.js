@@ -27,8 +27,7 @@ export default function Slider(props) {
   }
 
   const nextSlide = () => {
-    if(activeIndex === slides.length - 1) return false // do nothing if there are no more slides
-    // todo: do not scroll past last card
+    if(activeIndex === slides.length - props.slidesShown) return false // do nothing if there are no more slides
     
     setActiveIndex(activeIndex + 1);    
     setOffset(offset + slideWidth + props.gutterSize);
@@ -86,6 +85,8 @@ Slider.defaultProps = {
   showArrows: true,
   gutterSize: 26,
   hasOuterGutters: true,
+  slideMinWidth: 290,
+  slideMaxWidth: 430,
 }
 
 Slider.propTypes = {
@@ -95,4 +96,6 @@ Slider.propTypes = {
   showArrows: PropTypes.bool,
   gutterSize: PropTypes.number,
   hasOuterGutters: PropTypes.bool,
+  slideMaxWidth: PropTypes.number,
+  slideMinWidth: PropTypes.number,
 }
