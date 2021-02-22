@@ -29,4 +29,3 @@ Style Issues
 
 1. The top border of cards in slider is being hidden by overflow.
 2. There are line height issue with subtitle (i.e. the title and subtitle are too close together)
-3. background color (#F6F6F6)
