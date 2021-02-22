@@ -12,7 +12,9 @@ export default function Card(props) {
           <h4 className="card__subtitle">{props.subtitle}</h4>
         </div>
         
-        <p className="card__excerpt">{props.text}</p>
+        <p className="card__excerpt" dangerouslySetInnerHTML={{ __html: props.text }}>
+          {/* dangerously setting the HTML allows for styles like <strong> and <em> to be used and show up */}
+        </p>
         <a href="/" className="card__link">Learn More</a>
         {/* todo: align to bottom of card? */}
       </div>
