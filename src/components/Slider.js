@@ -13,46 +13,58 @@ export default function Slider(props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [offset, setOffset] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
+  const [sliderWidth, setSliderWidth] = useState(0);
 
   // If maxSlides has been passed in as a prop, render only a subset of the slides
   const slides = (props.maxSlides) ? props.slides.slice(0, props.maxSlides) : props.slides;
 
-  const getCardSize = (sliderWidth) => {
-    /**
-     * This function determines how wide the slides should be.
-     * It takes the width of the slider and divides it by the number of slides currently being displayed.
-     * Don't forget to account for gutters!
-     */
-    return (sliderWidth - ((props.slidesShown + 1) * props.gutterSize)) / props.slidesShown;
-  }
-
   const nextSlide = () => {
     if(activeIndex === slides.length - props.slidesShown) return false // do nothing if there are no more slides
-    
-    setActiveIndex(activeIndex + 1);    
+        
+    setActiveIndex(prevIndex => prevIndex + 1);
     setOffset(offset + cardWidth + props.gutterSize);
   }
 
   const prevSlide = () => {
     if(activeIndex === 0) return false // do nothing if you are already at the beginning
 
-    setActiveIndex(activeIndex - 1);
+    setActiveIndex(prevIndex => prevIndex - 1);
     setOffset(offset - cardWidth - props.gutterSize);
   }
 
+  const handleSizing = () => {
+    // get the size of the slider! it should fire on page load and on page resize
+    setSliderWidth($slider.current.offsetWidth);
+  }
+
   useEffect(() => {
-    const setSizes = () => {
-      const sliderWidth = $slider.current.offsetWidth;
-      setCardWidth(getCardSize(sliderWidth));
-    }
-    setSizes();
-    window.addEventListener('resize', setSizes)
-    
-    // cleanup! remove listener
+    // size elements on load
+    handleSizing();
+
+    // set & remove event listeners
+    window.addEventListener('resize', handleSizing);
     return () => {
-      window.removeEventListener('resize', setSizes);
+      window.removeEventListener('resize', handleSizing);
     }
   }, []);
+
+  useEffect(() => {
+    /**
+     * This function determines how wide the slides should be, and it fires every time the slider width changes.
+     * It takes the width of the slider and divides it by the number of slides currently being displayed.
+     * Don't forget to account for gutters!
+     */
+    const cardSize = (sliderWidth - ((props.slidesShown + 1) * props.gutterSize)) / props.slidesShown;
+    setCardWidth(cardSize);
+
+    /**
+     * When the slider width changes, we need to calculate a new offset, based on the active index.
+     * Note that this doesn't need to fire if the active index IS zero.
+     */
+    if(activeIndex > 0) {
+      setOffset((cardSize + props.gutterSize) * (activeIndex));
+    }
+  }, [sliderWidth, props.slidesShown, props.gutterSize]);
   /**
    * todo: change number of slides shown based on width of viewport
    * for example, the cardWidths should never drop below a certain width

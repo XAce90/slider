@@ -11,15 +11,6 @@ function App() {
         <Slider
           slides={cards}
           slidesShown={3}
-          maxSlides={6}
-        />
-      </div>
-      
-      <div className="slider-section">
-        <Slider
-          slides={cards}
-          slidesShown={3}
-          maxSlides={8}
         />
       </div>
     </div>
